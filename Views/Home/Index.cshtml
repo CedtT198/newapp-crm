@@ -1,0 +1,553 @@
+﻿@model DepensesViewModel
+@using Newtonsoft.Json;
+
+@{
+    ViewData["Title"] = "Dashboard expenses";
+    var depensesJson = JsonConvert.SerializeObject(Model.Depenses);
+    var depensesTicketJson = JsonConvert.SerializeObject(Model.DepensesTicket);
+    var depensesLeadJson = JsonConvert.SerializeObject(Model.DepensesLead);
+}
+
+
+<div class="row">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">/</span> Dashboard</h4>
+    <div class="col-md-12 col-lg-12 col-xl-12 row">
+        @* Total general expenses *@
+        <div class="col-lg-4 col-md-12 col-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between">
+                        <div class="avatar flex-shrink-0">
+                            <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded"/>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                <a class="dropdown-item" href="@Url.Action("General", "Depenses")">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="fw-semibold d-block mb-1">All expenses</span>
+                    <h3 class="card-title mb-2">$@Model.TotalDepensesPerCustomer</h3>
+                    @* <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> *@
+                </div>
+            </div>
+        </div>
+        
+        @* Total tickets *@
+        <div class="col-lg-4 col-md-12 col-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between">
+                        <div class="avatar flex-shrink-0">
+                            <img src="../assets/img/icons/unicons/wallet-info.png" alt="chart success" class="rounded"/>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                <a class="dropdown-item" href="@Url.Action("Ticket", "Depenses")">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="fw-semibold d-block mb-1">Ticket</span>
+                    <h3 class="card-title mb-2">$@Model.TotalDepensesTicket</h3>
+                    @* <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> *@
+                </div>
+            </div>
+        </div>
+        
+        @* Total leads *@
+        <div class="col-lg-4 col-md-12 col-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between">
+                        <div class="avatar flex-shrink-0">
+                            <img src="../assets/img/icons/unicons/cc-primary.png" alt="chart success" class="rounded"/>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                <a class="dropdown-item" href="@Url.Action("Lead", "Depenses")">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="fw-semibold d-block mb-1">Lead</span>
+                    <h3 class="card-title mb-2">$@Model.TotalDepensesLead</h3>
+                    @* <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small> *@
+                </div>
+            </div>
+        </div>
+
+        @* Per customer *@
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <div class="card h-100">
+                <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                    <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">General expenses</h5>
+                        <small class="text-muted">per customer</small>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-column align-items-center gap-1">
+                            @* <h2 class="mb-2">@Model.TotalDepensesPerCustomer</h2> *@
+                            <span>
+                                @* Total  *@
+                                <a href="@Url.Action("General", "Depenses")">See more</a>
+                            </span>
+                        </div>
+                        <div id="expensesPerCustomerChart"></div>
+                    </div>
+                    <ul class="p-0 m-0">
+                        @foreach (var dep in Model.Depenses)
+                        {
+                            <li class="d-flex mb-4 pb-1">
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-10">
+                                        <h6 class="mb-0">Customer @dep.CustomerId</h6>
+                                        @* <small class="text-muted">Description kely momba azy</small> *@
+                                        @* <div class="demo-vertical-spacing demo-only-element">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="@dep.Expenses" aria-valuemin="0"></div>
+                                            </div>
+                                        </div> *@
+                                    </div>
+                                    <div class="user-progress">
+                                        <small class="fw-semibold">@dep.Expenses</small>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        @* Ticketexpenses *@
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-danger"role="tab"data-bs-toggle="tab"
+                            data-bs-target="#navs-tabs-line-card-income"aria-controls="navs-tabs-line-card-income"aria-selected="true">
+                                Tickets Expenses
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body px-0">
+                    <div class="tab-content p-0">
+                        <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+                            <div class="d-flex p-4 pt-3">
+                                <div class="avatar flex-shrink-0 me-4">
+                                    <a href="@Url.Action("Ticket", "Depenses")">
+                                        More
+                                        @* <img src="../assets/img/icons/unicons/wallet.png" alt="Check balance" /> *@
+                                    </a>
+                                </div>
+                                @* <div>
+                                    <small class="text-muted d-block">Total</small>
+                                    <div class="d-flex align-items-center">
+                                        <h6 class="mb-0 me-1">@Model.TotalDepensesTicket</h6>
+                                        <small class="text-success fw-semibold">
+                                            <i class="bx bx-chevron-up"></i>1
+                                        </small>
+                                    </div>
+                                </div> *@
+                            </div>
+                            <div id="ticketChart"></div>
+                                <div class="d-flex justify-content-center pt-4 gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div id="expensesOfWeek"></div>
+                                    </div>
+                                <div>
+                                    <p class="mb-n1 mt-1"></p>
+                                    <small class="text-muted">Expenses ever</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xl-12"><br></div>
+
+    @* Lead expenses *@
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card h-100">
+            <div class="card-header">
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-warning"role="tab"data-bs-toggle="tab"
+                        class="btn btn-warning"
+                        data-bs-target="#navs-tabs-line-card-income"aria-controls="navs-tabs-line-card-income"aria-selected="true">
+                            Leads Expenses
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body px-0">
+                <div class="tab-content p-0">
+                    <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+                        <div class="d-flex p-4 pt-3">
+                            <div class="avatar flex-shrink-0 me-3">
+                                <a href="@Url.Action("Lead", "Depenses")">
+                                    More
+                                    @* <img src="../assets/img/icons/unicons/wallet.png" alt="Check balance" /> *@
+                                </a>
+                            </div>
+                            @* <div>
+                                <small class="text-muted d-block">Total</small>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0 me-1">@Model.TotalDepensesLead</h6>
+                                    <small class="text-danger fw-semibold">
+                                        <i class="bx bx-chevron-down"></i>1
+                                    </small>
+                                </div>
+                            </div> *@
+                        </div>
+                        <div id="leadChart"></div>
+                            <div class="d-flex justify-content-center pt-4 gap-2">
+                                <div class="flex-shrink-0">
+                                    <div id="expensesOfWeek"></div>
+                                </div>
+                            <div>
+                                <p class="mb-n1 mt-1"></p>
+                                <small class="text-muted">Expenses ever</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script refer>
+'use strict';
+
+(function () {
+  let cardColor, headingColor, axisColor, shadeColor, borderColor;
+
+  cardColor = config.colors.white;
+  headingColor = config.colors.headingColor;
+  axisColor = config.colors.axisColor;
+  borderColor = config.colors.borderColor;
+  
+  // Function to generate random colors
+  @* function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  } *@
+
+  // Expenses per customer 
+  // --------------------------------------------------------------------
+  const depenses = @Html.Raw(depensesJson);
+
+  const depAmounts = depenses.map(d => d.Expenses);
+  const depCustomerIds = depenses.map(d => d.CustomerId);
+  const colorss = ['#4bc0c0', '#2ff940', '#ff5733', '#ff6683', '#c7039'];
+  @* const depColors = depCustomerIds.map(() => getRandomColor()); *@
+  @* console.log(depAmounts);
+  console.log(depCustomerIds); *@
+
+  const chartOrderStatistics = document.querySelector('#expensesPerCustomerChart'),
+    orderChartConfig = {
+      chart: {
+        height: 200,
+        width: 200,
+        type: 'donut'
+      },
+      labels: depCustomerIds,
+      series: depAmounts,
+      colors: colorss,
+      stroke: {
+        width: 9,
+        colors: colorss
+      },
+      dataLabels: {
+        enabled: false,
+        formatter: function (val, opt) {
+          return parseInt(val) + '$';
+        }
+      },
+      legend: {
+        show: false
+      },
+      grid: {
+        padding: {
+          top: 0,
+          bottom: 0,
+          right: 15
+        }
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: '100%',
+            labels: {
+              show: true,
+              value: {
+                fontSize: '1.5rem',
+                fontFamily: 'Public Sans',
+                color: colorss,
+                offsetY: -15,
+                formatter: function (val) {
+                  return parseInt(val) + '$';
+                }
+              },
+              name: {
+                offsetY: 20,
+                fontFamily: 'Public Sans'
+              },
+              total: {
+                show: true,
+                fontSize: '0.8125rem',
+                color: colorss,
+                label: 'Chart',
+                formatter: function (w) {
+                  return '$';
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+  if (typeof chartOrderStatistics !== undefined && chartOrderStatistics !== null) {
+    const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
+    statisticsChart.render();
+  }
+
+  // Ticket Chart - Area chart
+  // --------------------------------------------------------------------
+  const depensesTicket = @Html.Raw(depensesTicketJson);
+
+  const depTickAmounts = depensesTicket.map(d => d.Amount);
+  const depTickDates = depensesTicket.map(d => d.DateDepense);
+
+  const minDepTick = Math.min(...depTickAmounts);
+  const maxDepTick = Math.max(...depTickAmounts);
+
+  const ticketChartEl = document.querySelector('#ticketChart'),
+    ticketChartConfig = {
+      series: [
+        {
+          //data: [24, 2, 100] 
+            data: depTickAmounts
+        }
+      ],
+      chart: {
+        height: 215,
+        parentHeightOffset: 0,
+        parentWidthOffset: 0,
+        toolbar: {
+          show: false
+        },
+        type: 'area'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 2,
+        curve: 'straight' // 'smooth', 'straight', 'stepline'
+      },
+      legend: {
+        show: false
+      },
+      markers: {
+        size: 6,
+        colors: 'transparent',
+        strokeColors: 'transparent',
+        strokeWidth: 4,
+        discrete: [
+          {
+            fillColor: config.colors.white,
+            seriesIndex: 0,
+            dataPointIndex: 7,
+            strokeColor: config.colors.primary,
+            strokeWidth: 2,
+            size: 6,
+            radius: 8
+          }
+        ],
+        hover: {
+          size: 7
+        }
+      },
+      colors: ['#FF0000', '#FF4000', '#FF5000'],
+      fill: {
+        type: 'gradient', // 'solid', 'gradient'
+        gradient: {
+          shade: shadeColor,
+          shadeIntensity: 0.6,
+          opacityFrom: 0.5,
+          opacityTo: 0.25,
+          stops: [0, 95, 100]
+        }
+      },
+      grid: {
+        borderColor: borderColor,
+        strokeDashArray: 3,
+        padding: {
+          top: -20,
+          bottom: -8,
+          left: -10,
+          right: 8
+        }
+      },
+      xaxis: {
+        // categories: ['Jan', 'Feb', 'Mar'],
+        categories: depTickDates,
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: true,
+          style: {
+            fontSize: '8px',
+            colors: axisColor
+          }
+        }
+      },
+      yaxis: {
+        labels: {
+          show: false
+        },
+        min: minDepTick,
+        max: maxDepTick,
+        tickAmount: 6
+      }
+    };
+  if (typeof ticketChartEl !== undefined && ticketChartEl !== null) {
+    const ticketChart = new ApexCharts(ticketChartEl, ticketChartConfig);
+    ticketChart.render();
+  }
+  
+  
+  // Lead Chart - Area chart
+  // --------------------------------------------------------------------
+  const depensesLead = @Html.Raw(depensesLeadJson);
+
+  const depLeadAmounts = depensesLead.map(d => d.Amount);
+  const depLeadDates = depensesLead.map(d => d.DateDepense);
+
+  const minLeadTick = Math.min(...depLeadAmounts);
+  const maxLeadTick = Math.max(...depLeadAmounts);
+
+  const leadChartEl = document.querySelector('#leadChart'),
+    leadChartConfig = {
+      series: [
+        {
+          data: depLeadAmounts
+        }
+      ],
+      chart: {
+        height: 400,
+        parentHeightOffset: 0,
+        parentWidthOffset: 0,
+        toolbar: {
+          show: false
+        },
+        type: 'area'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 2,
+        curve: 'smooth'
+      },
+      legend: {
+        show: false
+      },
+      markers: {
+        size: 6,
+        colors: 'transparent',
+        strokeColors: 'transparent',
+        strokeWidth: 4,
+        discrete: [
+          {
+            fillColor: config.colors.white,
+            seriesIndex: 0,
+            dataPointIndex: 7,
+            strokeColor: config.colors.primary,
+            strokeWidth: 2,
+            size: 6,
+            radius: 8
+          }
+        ],
+        hover: {
+          size: 7
+        }
+      },
+      colors: ['#FFA500'],
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: shadeColor,
+          shadeIntensity: 0.6,
+          opacityFrom: 0.5,
+          opacityTo: 0.25,
+          stops: [0, 95, 100]
+        }
+      },
+      grid: {
+        borderColor: borderColor,
+        strokeDashArray: 3,
+        padding: {
+          top: -20,
+          bottom: -8,
+          left: -10,
+          right: 8
+        }
+      },
+      xaxis: {
+        categories: depLeadDates,
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: true,
+          style: {
+            fontSize: '13px',
+            colors: axisColor
+          }
+        }
+      },
+      yaxis: {
+        labels: {
+          show: false
+        },
+        min: minLeadTick,
+        max: maxLeadTick,
+        tickAmount: 6      }
+    };
+  if (typeof leadChartEl !== undefined && leadChartEl !== null) {
+    const leadChart = new ApexCharts(leadChartEl, leadChartConfig);
+    leadChart.render();
+  } 
+})();
+
+</script>

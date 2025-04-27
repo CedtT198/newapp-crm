@@ -1,0 +1,109 @@
+@model DepensesLead
+
+@{
+    ViewData["Title"] = "Lead expenses list";
+    var depenses = (List<DepensesLead>) ViewData["depenses"];
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p class="text-danger">@ViewBag.ErrorMessage</p>
+}
+else
+{
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Expenses /</span> Lead</h4> 
+    <div class="card">
+        <h3 class="card-header">
+            Details<br>
+            <small style="font-size: 14px; color:rgb(193, 193, 193)">Line number: @depenses.Count</small>
+        </h3>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Summary</th>
+                        <th>Lead ID</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var depense in depenses)
+                    {
+                        <tr>
+                            <td>@depense.Id</td>
+                            <td>@depense.DateDepense.ToString("yyyy-MM-dd")</td>
+                            <td>@depense.Summary</td>
+                            <td>@depense.Lead.LeadId</td>
+                            <td>@depense.Amount</td>
+                            <td>
+                                <div class="col-md-12">
+                                    <!-- Delete modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalScrollable-@depense.Id">Delete lead</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalScrollable-@depense.Id" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalScrollableTitle">Need confirmation</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Do you really want to delete this expense's lead ? <br>
+                                                        If you do, the expense will be so, still want to proceed ?
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <a href="/Depenses/DeleteLead?idLead=@depense.Lead.LeadId">
+                                                        <button type="button" class="btn btn-danger">Confirm delete</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Update modal -->
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalCenter-@depense.Id">Update</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalCenter-@depense.Id" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <form asp-action="UpdateDepensesLead" method="post">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalCenterTitle">Update form</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="mb-3">
+                                                                <label class="form-label" asp-for="Amount"></label>
+                                                                <input type="hidden" class="form-control" id="Id" asp-for="Id" value="@depense.Id" required/>
+                                                                <input type="number" class="form-control" id="Amount" asp-for="Amount" value="@depense.Amount" required/>
+                                                            </div>
+                                                            
+                                                            <div class="mb-3">
+                                                                <label class="form-label" asp-for="DateDepense"></label>
+                                                                <input type="date" class="form-control" id="DateDepense" asp-for="DateDepense" disabled value="@depense.DateDepense.ToString("yyyy-MM-dd")"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success">Save changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

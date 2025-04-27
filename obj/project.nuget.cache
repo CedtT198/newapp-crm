@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Qnqb79mItwmmak7Dq1AxgiE+ABKMcgU7Yk/lpb5AvRiprzyPTMmC0IAI3sq8ShsEdIm1800TXVYkjDzA+2Ev6A==",
+  "success": true,
+  "projectFilePath": "C:\\ITU\\S6\\Evaluation\\newapp-crm\\newapp-crm.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Cedric\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

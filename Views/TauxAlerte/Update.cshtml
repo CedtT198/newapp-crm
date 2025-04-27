@@ -1,0 +1,45 @@
+@model TauxAlerte
+@{
+    ViewData["Title"] = "Update alert limit";
+}
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Update form</h5>
+                <small class="text-muted float-end">Limit alert</small>
+            </div>
+            <div class="card-body">
+                <form asp-action="Update" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Amount"></label>
+                        <input type="number" class="form-control" id="date" asp-for="Amount" step="0.01" required /> 
+                        @if (Model != null)
+                        {
+                            <p style="color:red">Amount: @Model.Amount</p>
+                        }
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="DateTaux"></label>
+                        <input type="date" class="form-control" id="amount" asp-for="DateTaux" placeholder="New rate" required/>
+                        @if (Model != null)
+                        {
+                            <p style="color:red">Date: @Model.DateTaux</p>
+                        }
+                    </div>
+                    
+                    @if (ViewBag.TauxAlerteReturn != null)
+                    {
+                        <div class="alert alert-info" role="alert">
+                            @ViewBag.TauxAlerteReturn
+                        </div>
+                    }
+
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <div class="alert alert-danger" asp-validation-summary="ModelOnly" role="alert"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "General expenses list";
+    var depenses = (List<Depenses>) ViewData["depenses"];
+    @* var depensesTicket = (DepensesTicket) ViewData["depensesTicket"];
+    var depensesLead = (DepensesLead) ViewData["depensesLead"]; *@
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p class="text-danger">@ViewBag.ErrorMessage</p>
+}
+else
+{
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Expenses /</span> General</h4> 
+    <div class="card">
+        <h3 class="card-header">
+            List <br>
+            <small style="font-size: 14px; color:rgb(193, 193, 193)">Line number: @depenses.Count</small>
+        </h3>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Source</th>
+                        <th>Summary</th>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var depense in depenses)
+                    {
+                        <tr>
+                            <td>@depense.Id</td>
+                            <td>@depense.DateDepense.ToString("yyyy-MM-dd")</td>
+                            <td>@depense.Source</td>
+                            <td>@depense.Summary</td>
+                            <td>@depense.CustomerId</td>
+                            <td>@depense.Amount</td>
+                            <td>
+                                <div class="col-md-12">
+                                    @* <button type="button" class="btn btn-danger">Delete</button> *@
+                                    @* <button type="button" class="btn btn-warning">Update</button>     *@
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
