@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ITU\\S6\\Evaluation\\newapp-crm\\newapp-crm.csproj": {}
+    "C:\\ITU\\S6\\Evaluation\\1ere session\\newapp-crm\\newapp-crm.csproj": {}
   },
   "projects": {
-    "C:\\ITU\\S6\\Evaluation\\newapp-crm\\newapp-crm.csproj": {
+    "C:\\ITU\\S6\\Evaluation\\1ere session\\newapp-crm\\newapp-crm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ITU\\S6\\Evaluation\\newapp-crm\\newapp-crm.csproj",
+        "projectUniqueName": "C:\\ITU\\S6\\Evaluation\\1ere session\\newapp-crm\\newapp-crm.csproj",
         "projectName": "newapp-crm",
-        "projectPath": "C:\\ITU\\S6\\Evaluation\\newapp-crm\\newapp-crm.csproj",
+        "projectPath": "C:\\ITU\\S6\\Evaluation\\1ere session\\newapp-crm\\newapp-crm.csproj",
         "packagesPath": "C:\\Users\\Cedric\\.nuget\\packages\\",
-        "outputPath": "C:\\ITU\\S6\\Evaluation\\newapp-crm\\obj\\",
+        "outputPath": "C:\\ITU\\S6\\Evaluation\\1ere session\\newapp-crm\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Cedric\\AppData\\Roaming\\NuGet\\NuGet.Config"

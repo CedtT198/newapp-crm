@@ -9,51 +9,51 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = newapp_crm
 build_property.RootNamespace = newapp_crm
-build_property.ProjectDir = C:\ITU\S6\Evaluation\newapp-crm\
+build_property.ProjectDir = C:\ITU\S6\Evaluation\1ere session\newapp-crm\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\ITU\S6\Evaluation\newapp-crm
+build_property.MSBuildProjectDirectory = C:\ITU\S6\Evaluation\1ere session\newapp-crm
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Depenses/General.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Depenses/General.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwZW5zZXNcR2VuZXJhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Depenses/Lead.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Depenses/Lead.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwZW5zZXNcTGVhZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Depenses/Ticket.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Depenses/Ticket.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwZW5zZXNcVGlja2V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Home/Index.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Home/Privacy.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Shared/Error.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/Shared/_Layout.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/TauxAlerte/Update.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/TauxAlerte/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGF1eEFsZXJ0ZVxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/_ViewImports.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ITU/S6/Evaluation/newapp-crm/Views/_ViewStart.cshtml]
+[C:/ITU/S6/Evaluation/1ere session/newapp-crm/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qnqb79mItwmmak7Dq1AxgiE+ABKMcgU7Yk/lpb5AvRiprzyPTMmC0IAI3sq8ShsEdIm1800TXVYkjDzA+2Ev6A==",
+  "dgSpecHash": "9BCPeeZTiN4HGgl4b4rdrQ2Eutft6tfAdv4n+jdzOdgndd0XfyJr8gNWIftuxTC9WNutu3bDmJhPEFmYb4y6Qg==",
   "success": true,
-  "projectFilePath": "C:\\ITU\\S6\\Evaluation\\newapp-crm\\newapp-crm.csproj",
+  "projectFilePath": "C:\\ITU\\S6\\Evaluation\\1ere session\\newapp-crm\\newapp-crm.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cedric\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
